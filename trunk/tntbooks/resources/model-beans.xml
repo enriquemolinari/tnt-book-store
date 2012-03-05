@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<!-- model beans -->
+	<bean id="cashier" class="ar.cpfw.tntbooks.model.Cashier">
+		<constructor-arg ref="salesNotebook" />
+		<constructor-arg ref="merchantProcessor" />
+	</bean>
+
+	<bean id="merchantProcessor" class="ar.cpfw.tntbooks.model.MerchantProcessor">
+		<constructor-arg ref="creditCardPaymentTerminal"></constructor-arg>
+	</bean>
+
+	<bean id="cart" class="ar.cpfw.tntbooks.model.TntCart">
+		<constructor-arg ref="timeProvider" />
+	</bean>
+
+	<bean id="timeProvider" class="ar.cpfw.tntbooks.model.TimeProviderImpl" />
+
+	<!-- for development -->
+	<beans profile="dev">
+		<bean id="creditCardPaymentTerminal" class="ar.cpfw.tntbooks.model.TestCreditCardPaymentTerminalFactory"
+			factory-method="create" />
+	</beans>
+
+	<beans profile="prod">
+		<bean id="creditCardPaymentTerminal" class="ar.cpfw.tntbooks.model.CreditCardPaymentTerminal">
+			<constructor-arg ref="getMethod"/>
+			<constructor-arg ref="httpClient"/>
+		</bean>
+		
+		<bean id="getMethod" class="org.apache.commons.httpclient.methods.GetMethod">
+			<constructor-arg value="http://www.merchant.com/debit" />
+		</bean>
+		<bean id="httpClient" class="org.apache.commons.httpclient.HttpClient"/>
+	</beans>
+
+</beans>

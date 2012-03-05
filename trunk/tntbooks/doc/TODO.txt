@@ -1,0 +1,35 @@
++ Si algún parámetro no tiene el formato correcto devuelve como código de HTTP 400 (Bad request)
+	(verificar parametros) 
++ En caso contrario devuelve como resultado HTTP 200 con el siguiente contenido:
+	1)	En caso exitoso: 0|OK
+	2)	En caso de no poder realizar el débito: 1|DESCRIPCION_DE_ERROR
++ En caso de que la transacción no se pudo realizar se desea pasar la descripción del error al usuario de sistema.
++ Lamentablemente el up-time del Merchant Processor no es muy bueno, por lo que si el mismo se encuentra 
+	caído cuando se desea validar una transacción, se debe generar el pedido en un archivo de input cuyo ID 
+	de cliente del nombre será TUSLIBROS (ver más abajo especificación de este archivo).
++ Cambiar los test para que usen PosnetImpl... renombrar, sacar Impl, sacar la interfaz
++ Hacer los casos de prueba para todos los casos que maneja el PosnetImpl	
+
+
++ el Ticket deberia tener que libros se compraron tambien
++ validaciones:
+
+1)      creditCardNumber: Número de tarjeta de crédito
+2)      creditCardExpiration: Fecha de expiración con 2 dígitos para el mes y 4 para el año
+3)      creditCardOwner: Nombre del dueño de la tarjeta. Máximo de 30 caracteres
+4)      transactionAmout: Cantidad de la transacción, con un máximo de 15 dígitos para la parte entera y dos dígitos para la decimal (siempre se debe generar la parte decimal) utilizando el punto como separador.
+
++ test de expiro la tarjeta (ver cobertura...)
++ Corregir los test de checkout ya que van a fallar despues del 2020 !
+	
+- Verificar el uso de Editorial ?
+- Donde uso Cliente, antes usaba Tarjeta. Reifique el concepto de Cliente cuando vi que necesitabamos Compras
+- ventas como objeto collection pasa como constructor del cajero... ?
+- Que pasa con Compras? ahora estoy agregando compras al cliente en el checkout del Cajero.
+- Ticket un value object?	
+
+-----------------------------------------------------------------------------------------------
+- El cascade update de Cliente con compras y el save Ticket no persiste dos veces, se da cuenta.
+- Tambien se da cuenta que el Ticket es de un Cliente en particular, lo tengo not-null la forein key asique no dejaria guardar.
+- El COBRADO Y NOCOBRADO no esta bueno en la misma tabla... preferiria otra. Como hago con Hibernate ? 
+
