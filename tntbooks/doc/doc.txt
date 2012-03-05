@@ -1,0 +1,34 @@
+Derby Eclipse Plugin UI y Core: C:\MisCosas\derby\plugin\org.apache.derby.core_10.2.2
+(por algun motivo la version mas nueva del plug in no funciona... usar 10.2.2)
+
+- Start Derby:
+Click derecho sobre el proyecto -> Apache Derby -> Start
+- Connect using Data Source Explorer
+
+ij> connect 'jdbc:derby://localhost:1527/tuslibros';
+
+Hibernate:
+- Typically, you shouldn't open and close sessions in your DAO classes because they don't know if other 
+DAOs are going to need the same sessions. The best thing to do is open a session for each incoming request 
+(using a filter is the easiest way to do this) and then calling sessionFactory.getCurrentSession() in all your 
+DAOs to get the current session. That way all your DAOs will be easily reusable.
+
+- Si quiero que los getters devuelvan collections inmutables cuando son persistidas, hibernate las trae de la BD. Lo cual es
+logico porque voy a devolver una copia. Tambien hace unos Updates a la BD, no se bien por que...
+
+- Si usamos las transactions manejadas con @Transactional de Spring, la property <prop key="hibernate.current_session_context_class">thread</prop>
+hay que sacarla. http://jira.springsource.org/browse/SPR-4207
+
+- Como se resuelve el tema de tener colaboradores no persistidos? El ejemplo de Tarjeta... traigo una cliente
+con su tarjeta. Pero tarjeta colabora con un TimeProvider que no viene de la BD... lo tengo que setear siempre?
+(no le puedo decir a Hibernate que me injecte una instancia singleton tipo Spring cada vez que traiga de la BD algo?)
+
+- Si quiero agregar una compra nueva de un cliente, tengo que inicializar y traerme la collection entera en memoria
+para luego agregar un elemento y grabar ? 
+-- Sino la otra es traer la collection con proxy, pero setearle una collection vacia para porder agregar, 
+	sino el proxy requiere session y al hacer add, la va a inicializar...
+
+- Al cambiar Cliente tambien me tira un update en Tarjeta, cuando ni la toque... No estoy haciendo los cambios con la session
+abierta, sino que llamo al un session.update y tengo un cascade=save-update.
+
+ver http://caveatemptor.hibernate.org

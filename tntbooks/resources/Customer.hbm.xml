@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ar.cpfw.tntbooks.model">
+	<class name="Customer" table="customers">
+
+		<id name="id" type="string" column="customer_id">
+			<generator class="uuid.hex" />
+		</id>
+
+		<property name="name" type="string">
+			<column name="name" length="100" not-null="true" />
+		</property>
+		<property name="surname" type="string">
+			<column name="surname" length="100" not-null="true" />
+		</property>
+
+		<many-to-one name="creditCard" column="credit_card_id" fetch="join"
+			class="CreditCard" cascade="save-update, delete" />
+
+		<set name="purchases" lazy="true" cascade="save-update" table="sales">
+			<!-- not-null="true" -->
+			<key column="customer_id" />
+			<one-to-many class="ar.cpfw.tntbooks.model.Ticket"/>
+		</set>
+
+	</class>
+</hibernate-mapping>

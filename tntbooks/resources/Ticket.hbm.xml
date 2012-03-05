@@ -1,0 +1,34 @@
+<!DOCTYPE hibernate-mapping
+PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="ar.cpfw.tntbooks.model">
+	<class name="Ticket" table="sales">
+
+		<id name="id" type="string" column="sales_id">
+			<generator class="uuid.hex" />
+		</id>
+
+		<property name="dateTime" type="timestamp" not-null="true" />
+	
+		<property name="amount" type="float" not-null="true" />
+
+		<property name="status" type="ar.cpfw.tntbooks.persistence.TicketUserType"
+			not-null="true" />
+
+		<set name="items" lazy="true" cascade="all" table="purchased_books">
+			<key column="sales_id" not-null="true" />
+
+			<composite-element class="ar.cpfw.tntbooks.model.Ticket$TicketItem">
+				
+				<property name="quantity" column="quantity" unique="false"
+					not-null="true"/>
+				<property name="price" column="price"
+					not-null="true" unique="false"/>
+				<many-to-one name="book" column="book_id" class="ar.cpfw.tntbooks.model.Book"
+					not-null="true" />
+			</composite-element>
+		</set>
+
+	</class>
+</hibernate-mapping>

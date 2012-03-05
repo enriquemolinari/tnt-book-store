@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+    <info
+        organisation="txtbooks"
+        module="default"
+        status="integration">
+	</info>
+	
+	<dependencies>
+		<dependency org="junit" name="junit" rev="4.8.2"/>
+
+		<dependency org="joda-time" name="joda-time" rev="2.0"/>
+				
+		<dependency org="org.springframework" name="spring-context" rev="3.1.0.RELEASE">
+			<exclude org="javax.ejb"/>
+			<exclude org="javax.jms"/>
+			<exclude org="com.bea.wlplatform"/>
+		</dependency>
+
+		<dependency org="org.springframework" name="spring-test" rev="3.1.0.RELEASE"/>
+		
+		<dependency org="org.springframework" name="spring-webmvc" rev="3.1.0.RELEASE"/>
+		
+		<dependency org="org.springframework" name="spring-orm" rev="3.1.0.RELEASE">
+			<exclude org="com.oracle"/>
+			<exclude org="com.oracle.toplink"/>
+			<exclude org="org.apache.ibatis"/>
+		</dependency>
+		
+		<dependency org="hsqldb" name="hsqldb" rev="1.8.0.10"/>
+
+		<dependency org="com.jayway.restassured" name="rest-assured" rev="1.5"/>
+
+		<dependency org="org.hibernate" name="hibernate-core" rev="3.6.7.Final">
+			<exclude org="ant"/>
+			<exclude org="antlr"/>
+			<exclude org="org.jboss.javaee"/>
+		</dependency>
+		<dependency org="org.hibernate" name="hibernate-validator" rev="4.2.0.Final"/>
+		
+		<dependency org="org.apache.derby" name="derby" rev="10.2.2.0"/>
+		
+		<dependency org="com.google.guava" name="guava" rev="r09">
+			<exclude org="com.google.code.findbugs"/>
+		</dependency>
+		
+		<dependency org="commons-lang" name="commons-lang" rev="2.6"/>
+		
+		<dependency org="commons-httpclient" name="commons-httpclient" rev="3.1"/>
+	
+		<exclude org="org.jboss.javaee"/>
+		<exclude org="com.oracle"/>
+		<exclude org="com.oracle.toplink"/>
+		<exclude org="javax.jms"/>
+		<exclude org="com.sun.jdmk"/>
+		<exclude org="com.sun.jmx"/>
+		<exclude org="org.eclipse.persistence"/>
+		<exclude org="org.hibernate" module="com.springsource.org.hibernate.validator"/>
+		<exclude org="velocity"/>
+		<exclude org="org.apache.velocity"/>
+		<exclude org="velocity-tools"/>
+
+		<exclude org="org.apache.tiles"/>
+		<exclude org="org.apache.tomcat"/>
+		<exclude org="org.freemarker"/>
+		<exclude org="com.lowagie"/>
+		<exclude org="toplink.essentials"/>
+		<exclude org="javax.servlet"/>
+		<exclude org="org.testng"/>
+		<exclude org="org.springframework" module="spring-webmvc-portlet"/>
+		<exclude org="org.apache.openjpa"/>
+		
+<!--		<exclude org="org.hibernate" module="hibernate-commons-annotations"/>-->
+		<exclude org="org.hibernate" module="hibernate-annotations"/>
+	</dependencies>
+	
+</ivy-module>
