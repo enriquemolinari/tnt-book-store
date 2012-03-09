@@ -33,7 +33,6 @@
 		<dependency org="com.jayway.restassured" name="rest-assured" rev="1.5"/>
 
 		<dependency org="org.hibernate" name="hibernate-core" rev="3.6.7.Final">
-			<exclude org="ant"/>
 			<exclude org="antlr"/>
 			<exclude org="org.jboss.javaee"/>
 		</dependency>
@@ -49,6 +48,7 @@
 		
 		<dependency org="commons-httpclient" name="commons-httpclient" rev="3.1"/>
 	
+		<exclude org="ant"/>
 		<exclude org="org.jboss.javaee"/>
 		<exclude org="com.oracle"/>
 		<exclude org="com.oracle.toplink"/>
