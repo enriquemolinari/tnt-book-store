@@ -20,15 +20,16 @@ import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 @Controller
-public class CartController {
+public class TntController {
 
 	private Map<String, TntCart> listOfCreatedCarts = new ConcurrentHashMap<String, TntCart>();
 	private TntBookStore tntBookStore;
 
 	@Autowired
-	public CartController(TntBookStore tntBookStore) {
+	public TntController(TntBookStore tntBookStore) {
 		this.tntBookStore = tntBookStore;
-		new Timer("carts_clean_up").schedule(new CartsCleanUp(listOfCreatedCarts), 10, 3600000);
+		new Timer("carts_clean_up").schedule(new CartsCleanUp(
+				listOfCreatedCarts), 10, 3600000);
 	}
 
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
