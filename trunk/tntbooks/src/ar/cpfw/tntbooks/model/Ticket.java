@@ -1,6 +1,5 @@
 package ar.cpfw.tntbooks.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Map;
@@ -18,100 +17,6 @@ public class Ticket {
 	private Set<TicketItem> items;
 	private DateTime dateTime;
 
-	public static class TicketItem implements Serializable {
-
-		private static final long serialVersionUID = -148341787929241110L;
-
-		private Book book;
-		private Float price;
-		private Integer quantity;
-
-		// just required by Hibernate
-		@SuppressWarnings("unused")
-		private TicketItem() {
-
-		}
-
-		@Override
-		public boolean equals(Object o) {
-			if (o == this) {
-				return true;
-			}
-
-			if (!(o instanceof TicketItem)) {
-				return false;
-			}
-
-			TicketItem item = (TicketItem) o;
-			return this.book.equals(item.book) && this.price.equals(item.price)
-					&& this.quantity.equals(item.quantity);
-		}
-
-		@Override
-		public int hashCode() {
-			int result = 17;
-			result = 31 * result + book.hashCode();
-			result = 31 * result + Float.floatToIntBits(price);
-			result = 31 * result + quantity;
-			return result;
-		}
-
-		public TicketItem(Book book, Integer quantity) {
-			this.book = book;
-			this.price = book.getPrice();
-			this.quantity = quantity;
-		}
-
-		@JsonIgnore
-		// just required by Hibernate
-		@SuppressWarnings("unused")
-		private Book getBook() {
-			return book;
-		}
-
-		@JsonIgnore
-		public String getIsbn() {
-			return book.getIsbn();
-		}
-
-		// just required by Hibernate
-		@SuppressWarnings("unused")
-		private void setBook(Book book) {
-			this.book = book;
-		}
-
-		@JsonIgnore
-		public Float getPrice() {
-			return price;
-		}
-
-		// just required by Hibernate
-		@SuppressWarnings("unused")
-		private void setPrice(Float price) {
-			this.price = price;
-		}
-
-		@JsonIgnore
-		public Integer getQuantity() {
-			return quantity;
-		}
-
-		// just required by Hibernate
-		@SuppressWarnings("unused")
-		private void setQuantity(Integer quantity) {
-			this.quantity = quantity;
-		}
-
-		@JsonProperty("title")
-		public String getTitle() {
-			return book.getTitle();
-		}
-
-		@Override
-		public String toString() {
-			return this.getIsbn() + "|" + this.getPrice() + "|" + this.getQuantity();
-		}
-	}
 
 	public static enum Status {
 		PAID, UNPAID
@@ -124,7 +29,7 @@ public class Ticket {
 	public Ticket(float totalAmount, Map<Book, Integer> books, Status status) {
 		this.amount = totalAmount;
 		this.status = status;
-		this.items = new HashSet<Ticket.TicketItem>();
+		this.items = new HashSet<TicketItem>();
 		this.dateTime = DateTime.now();
 
 		for (Map.Entry<Book, Integer> entry : books.entrySet()) {

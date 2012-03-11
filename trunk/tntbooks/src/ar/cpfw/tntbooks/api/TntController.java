@@ -20,6 +20,7 @@ import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 @Controller
+//TODO: devolver el transaction ID en el checkout
 public class TntController {
 
 	private Map<String, TntCart> listOfCreatedCarts = new ConcurrentHashMap<String, TntCart>();

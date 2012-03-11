@@ -51,7 +51,7 @@ public class Main {
 		HttpClient httpClient = new HttpClient() {
 			@Override
 			public int executeMethod(HttpMethod method) {
-				return 404;
+				return 202;
 			}
 		};
 
@@ -78,7 +78,7 @@ public class Main {
 //		Customer customer = l.get(0);
 		TntCart cart = new TntCart(timeProvider);
 
-		cart.add(bookDAO.bookByIsbn("AR123trew"), 2);
+		cart.add(bookDAO.bookByIsbn("AR123456"), 2);
 
 		customer.purchase(cart);
 		customerDAO.newCustomer(customer);
