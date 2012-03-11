@@ -19,7 +19,7 @@ PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 		<set name="items" lazy="true" cascade="all" table="purchased_books">
 			<key column="sales_id" not-null="true" />
 
-			<composite-element class="ar.cpfw.tntbooks.model.Ticket$TicketItem">
+			<composite-element class="ar.cpfw.tntbooks.model.TicketItem">
 				
 				<property name="quantity" column="quantity" unique="false"
 					not-null="true"/>

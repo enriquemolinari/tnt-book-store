@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.cpfw.tntbooks.model.Customer;
 import ar.cpfw.tntbooks.model.CustomerAgenda;
 import ar.cpfw.tntbooks.model.Ticket;
+import ar.cpfw.tntbooks.model.TicketItem;
 import ar.cpfw.tntbooks.model.TntCart;
-import ar.cpfw.tntbooks.model.Ticket.TicketItem;
 
 import com.google.common.collect.ImmutableList;
 

@@ -12,17 +12,6 @@ import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 
-import ar.cpfw.tntbooks.model.Book;
-import ar.cpfw.tntbooks.model.Cashier;
-import ar.cpfw.tntbooks.model.CreditCard;
-import ar.cpfw.tntbooks.model.CreditCardPaymentTerminal;
-import ar.cpfw.tntbooks.model.Customer;
-import ar.cpfw.tntbooks.model.MerchantProcessor;
-import ar.cpfw.tntbooks.model.SalesNotebook;
-import ar.cpfw.tntbooks.model.Ticket;
-import ar.cpfw.tntbooks.model.TimeProvider;
-import ar.cpfw.tntbooks.model.TntCart;
-import ar.cpfw.tntbooks.model.Ticket.TicketItem;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 import com.google.common.collect.ImmutableSet;
@@ -137,7 +126,7 @@ public class CartCheckoutTest {
 		Assert.assertNotSame("UNPAID", sale.getStatus().name());
 		Assert.assertEquals(1, salesNotebook.allSales().size());
 
-		Ticket.TicketItem ticketItem = new Ticket.TicketItem(new Book("AR123", 100f, "book title"), 3);
+		TicketItem ticketItem = new TicketItem(new Book("AR123", 100f, "book title"), 3);
 
 		Set<TicketItem> items = new ImmutableSet.Builder<TicketItem>().add(
 				ticketItem).build();
