@@ -52,9 +52,10 @@ public class Customer {
 		this.cashier = cashier;
 	}
 
-	public void purchase(TntCart aCart) {
+	public Ticket purchase(TntCart aCart) {
 		Ticket ticket = cashier.checkout(aCart, creditCard);
 		purchases.add(ticket);
+		return ticket;
 	}
 
 	public String getName() {

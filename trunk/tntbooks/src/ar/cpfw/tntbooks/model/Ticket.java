@@ -38,6 +38,11 @@ public class Ticket {
 	}
 
 	@JsonIgnore
+	public String getId() {
+		return id;
+	}
+
+	@JsonIgnore
 	public String getSalesDate() {
 		return this.dateTime.toString();
 	}
@@ -73,12 +78,6 @@ public class Ticket {
 	// just required by Hibernate
 	@SuppressWarnings("unused")
 	private Ticket() {
-	}
-
-	// just required by Hibernate
-	@SuppressWarnings("unused")
-	private String getId() {
-		return id;
 	}
 
 	// just required by Hibernate

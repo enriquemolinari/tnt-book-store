@@ -51,9 +51,9 @@ public class HibernateCustomerAgenda extends
 	}
 
 	@Transactional
-	public void purchase(String customerId, TntCart aCart) {
+	public Ticket purchase(String customerId, TntCart aCart) {
 		Customer customer = this.customerById(customerId);
-		customer.purchase(aCart);
+		return customer.purchase(aCart);
 	}
 
 	// I need this to initialize the purchase collection defined as lazy
