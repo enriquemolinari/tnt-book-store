@@ -16,14 +16,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.cpfw.tntbooks.model.BookCatalog;
 import ar.cpfw.tntbooks.model.CustomerAgenda;
+import ar.cpfw.tntbooks.model.Ticket;
 import ar.cpfw.tntbooks.model.TimeProvider;
 import ar.cpfw.tntbooks.model.TntBookStore;
 import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 @Controller
-// TODO: devolver el transaction ID en el checkout
-//TODO: Como valido ERRORES (la BD esta abajo) y mando json?
+// TODO: Como valido ERRORES (la BD esta abajo) y mando json?
 public class TntController {
 
 	private Map<String, TntCart> listOfCreatedCarts = new ConcurrentHashMap<String, TntCart>();
@@ -31,14 +31,16 @@ public class TntController {
 	private BookCatalog catalogOfBooks;
 	private TntBookStore tntBookStore;
 	private TimeProvider timeProvider;
-	
+
 	@Autowired
-	public TntController(CustomerAgenda agendaOfCustomer, BookCatalog catalogOfBook, TntBookStore bookStore, TimeProvider timeProvider) {
+	public TntController(CustomerAgenda agendaOfCustomer,
+			BookCatalog catalogOfBook, TntBookStore bookStore,
+			TimeProvider timeProvider) {
 		this.agendaOfCustomers = agendaOfCustomer;
 		this.catalogOfBooks = catalogOfBook;
 		this.tntBookStore = bookStore;
 		this.timeProvider = timeProvider;
-		
+
 		new Timer("carts_clean_up").schedule(new CartsCleanUp(
 				listOfCreatedCarts), 10, 3600000);
 	}
@@ -95,10 +97,11 @@ public class TntController {
 
 		TntCart cart = getCart(cartId);
 
-		agendaOfCustomers.purchase(clientId, cart);
+		Ticket ticket = agendaOfCustomers.purchase(clientId, cart);
 
 		listOfCreatedCarts.remove(cartId);
-		return new ModelAndView().addObject("checkout", "OK");
+
+		return new ModelAndView().addObject("transactionId", ticket.getId());
 	}
 
 	private TntCart getCart(String cartId) {
@@ -121,11 +124,10 @@ public class TntController {
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ModelAndView handleException(
-			Exception exception) {
-		return errorModel(exception.getMessage());
+	public ModelAndView handleException(Exception exception) {
+		return errorModel("Sorry... something bad has ocurred.");
 	}
-	
+
 	private ModelAndView errorModel(String message) {
 		return new ModelAndView().addObject("error", message);
 	}

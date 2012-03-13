@@ -14,6 +14,6 @@ public interface CustomerAgenda {
 
 	List<Ticket> purchases(String customerId);
 	
-	void purchase(String customerId, TntCart cart);
+	Ticket purchase(String customerId, TntCart cart);
 
 }
