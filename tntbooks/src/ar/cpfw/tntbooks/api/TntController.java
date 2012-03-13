@@ -14,21 +14,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.cpfw.tntbooks.model.TimeProviderImpl;
+import ar.cpfw.tntbooks.model.BookCatalog;
+import ar.cpfw.tntbooks.model.CustomerAgenda;
+import ar.cpfw.tntbooks.model.TimeProvider;
 import ar.cpfw.tntbooks.model.TntBookStore;
 import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 @Controller
-//TODO: devolver el transaction ID en el checkout
+// TODO: devolver el transaction ID en el checkout
+//TODO: Como valido ERRORES (la BD esta abajo) y mando json?
 public class TntController {
 
 	private Map<String, TntCart> listOfCreatedCarts = new ConcurrentHashMap<String, TntCart>();
+	private CustomerAgenda agendaOfCustomers;
+	private BookCatalog catalogOfBooks;
 	private TntBookStore tntBookStore;
-
+	private TimeProvider timeProvider;
+	
 	@Autowired
-	public TntController(TntBookStore tntBookStore) {
-		this.tntBookStore = tntBookStore;
+	public TntController(CustomerAgenda agendaOfCustomer, BookCatalog catalogOfBook, TntBookStore bookStore, TimeProvider timeProvider) {
+		this.agendaOfCustomers = agendaOfCustomer;
+		this.catalogOfBooks = catalogOfBook;
+		this.tntBookStore = bookStore;
+		this.timeProvider = timeProvider;
+		
 		new Timer("carts_clean_up").schedule(new CartsCleanUp(
 				listOfCreatedCarts), 10, 3600000);
 	}
@@ -36,10 +46,10 @@ public class TntController {
 	@RequestMapping(value = "/cart", method = RequestMethod.POST)
 	public ModelAndView createCart(@RequestParam("clientId") String clientId) {
 
-		if (tntBookStore.isValidCustomer(clientId)) {
+		if (agendaOfCustomers.exists(clientId)) {
 			String cartId = UUID.randomUUID().toString();
 
-			TntCart cart = new TntCart(new TimeProviderImpl());
+			TntCart cart = new TntCart(timeProvider);
 			cart.setValidator(tntBookStore);
 
 			listOfCreatedCarts.put(cartId, cart);
@@ -66,7 +76,7 @@ public class TntController {
 
 		TntCart cart = getCart(cartId);
 
-		cart.add(tntBookStore.bookByIsbn(isbn), quantity);
+		cart.add(catalogOfBooks.bookByIsbn(isbn), quantity);
 
 		return new ModelAndView().addObject("cartContent", cart.getBooks());
 	}
@@ -75,7 +85,7 @@ public class TntController {
 	public ModelAndView listPurchases(
 			@RequestParam("clientId") String customerId) {
 
-		return new ModelAndView().addObject("purchases", tntBookStore
+		return new ModelAndView().addObject("purchases", agendaOfCustomers
 				.purchases(customerId));
 	}
 
@@ -85,7 +95,7 @@ public class TntController {
 
 		TntCart cart = getCart(cartId);
 
-		tntBookStore.checkout(cart, clientId);
+		agendaOfCustomers.purchase(clientId, cart);
 
 		listOfCreatedCarts.remove(cartId);
 		return new ModelAndView().addObject("checkout", "OK");
@@ -110,6 +120,12 @@ public class TntController {
 		return errorModel(exception.getMessage());
 	}
 
+	@ExceptionHandler(Exception.class)
+	public ModelAndView handleException(
+			Exception exception) {
+		return errorModel(exception.getMessage());
+	}
+	
 	private ModelAndView errorModel(String message) {
 		return new ModelAndView().addObject("error", message);
 	}
