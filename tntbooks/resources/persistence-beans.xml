@@ -6,11 +6,6 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
-	<bean id="tntBooks" class="ar.cpfw.tntbooks.model.TntBookStore">
-		<property name="customerAgenda" ref="customerAgenda" />
-		<property name="bookCatalog" ref="bookCatalog" />
-	</bean>
-
 	<bean id="bookCatalog" class="ar.cpfw.tntbooks.persistence.HibernateBookCatalog">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>

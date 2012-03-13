@@ -6,6 +6,8 @@
 		http://www.springframework.org/schema/tx
 		http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 
+	<bean id="tntBooks" class="ar.cpfw.tntbooks.model.TntBookStore"/>
+
 	<!-- model beans -->
 	<bean id="cashier" class="ar.cpfw.tntbooks.model.Cashier">
 		<constructor-arg ref="salesNotebook" />
