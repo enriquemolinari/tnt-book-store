@@ -23,7 +23,6 @@ import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 @Controller
-// TODO: Como valido ERRORES (la BD esta abajo) y mando json?
 public class TntController {
 
 	private Map<String, TntCart> listOfCreatedCarts = new ConcurrentHashMap<String, TntCart>();
@@ -125,7 +124,7 @@ public class TntController {
 
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(Exception exception) {
-		return errorModel("Sorry... something bad has ocurred.");
+		return errorModel("Sorry... something bad has ocurred. Call customer service and wait........ still waiting at phone? ....... 2 hours later.... still waiting ? sorry... I feel very bad... ");
 	}
 
 	private ModelAndView errorModel(String message) {
