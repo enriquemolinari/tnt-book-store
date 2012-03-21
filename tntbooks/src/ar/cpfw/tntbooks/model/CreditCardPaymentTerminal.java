@@ -8,7 +8,7 @@ import ar.cpfw.tntbooks.model.exceptions.CreditCardProcessorTerminalException;
 
 public class CreditCardPaymentTerminal {
 
-	private static final int HTTP_CODE_OK = 200;
+	private static final int HTTP_BAD_REQUEST_CODE = 400;
 	private HttpClient httpClient;
 	private GetMethod getMethod;
 
@@ -26,8 +26,8 @@ public class CreditCardPaymentTerminal {
 
 			int httpCode = httpClient.executeMethod(this.getMethod);
 
-			if (httpCode != HTTP_CODE_OK) {
-				throw new CreditCardProcessorTerminalException("http response code != 0 ... ");
+			if (httpCode == HTTP_BAD_REQUEST_CODE) {
+				throw new CreditCardProcessorTerminalException("Bad request ...");
 			}
 			return getMethod.getResponseBodyAsString();
 

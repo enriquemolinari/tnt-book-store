@@ -37,7 +37,7 @@
 		</bean>
 		
 		<bean id="getMethod" class="org.apache.commons.httpclient.methods.GetMethod">
-			<constructor-arg value="http://www.merchant.com/debit" />
+			<constructor-arg value="https://www.merchant.com/debit" />
 		</bean>
 		<bean id="httpClient" class="org.apache.commons.httpclient.HttpClient"/>
 	</beans>
