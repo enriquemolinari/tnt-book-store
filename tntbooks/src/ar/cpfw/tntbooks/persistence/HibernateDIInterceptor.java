@@ -18,24 +18,25 @@ import ar.cpfw.tntbooks.model.TimeProvider;
  * persistent objects
  */
 @SuppressWarnings("serial")
-public class HibernateDIInterceptor extends EmptyInterceptor implements ApplicationContextAware {
+public class HibernateDIInterceptor extends EmptyInterceptor implements
+		ApplicationContextAware {
 
 	private Cashier cashier;
 	private TimeProvider timeProvider;
 	private ApplicationContext springContext;
-	
+
 	public HibernateDIInterceptor() {
-		
+
 	}
-	
+
 	@Override
 	public boolean onLoad(Object entity, Serializable id, Object[] state,
 			String[] propertyNames, Type[] types) {
-		
+
 		if (this.cashier == null) {
-			this.cashier = (Cashier)this.springContext.getBean("cashier");
+			this.cashier = (Cashier) this.springContext.getBean("cashier");
 		}
-		
+
 		if (entity instanceof Customer) {
 			((Customer) entity).setCashier(cashier);
 			return true;
