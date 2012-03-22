@@ -6,7 +6,7 @@ import java.util.Set;
 import static org.apache.commons.lang.StringUtils.length;
 
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
-//TODO: ver si los strings validados corresponden con lo que defini de len en las columnas
+
 public class Customer {
 
 	private String id;
