@@ -11,6 +11,9 @@ import ar.cpfw.tntbooks.model.TntBookStore;
 import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CarritoTest {
 
 	private static final String ISBN_TNTBOOKS1 = "AR123456";

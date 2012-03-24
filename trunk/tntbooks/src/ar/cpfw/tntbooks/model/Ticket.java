@@ -9,6 +9,9 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.joda.time.DateTime;
 
+/**
+ * @author Enrique Molinari
+ */
 public class Ticket {
 
 	private String id;

@@ -7,6 +7,9 @@ import java.util.Set;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
+/**
+ * @author Enrique Molinari
+ */
 public class Cart<T> {
 
 	private Map<T, Integer> items = new HashMap<T, Integer>();

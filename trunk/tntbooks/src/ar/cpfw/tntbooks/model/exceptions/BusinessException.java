@@ -1,5 +1,8 @@
 package ar.cpfw.tntbooks.model.exceptions;
 
+/**
+ * @author Enrique Molinari
+ */
 @SuppressWarnings("serial")
 public class BusinessException extends RuntimeException {
 

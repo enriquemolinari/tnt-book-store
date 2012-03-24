@@ -3,6 +3,9 @@ package ar.cpfw.tntbooks.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CustomerTest {
 
 	@Test

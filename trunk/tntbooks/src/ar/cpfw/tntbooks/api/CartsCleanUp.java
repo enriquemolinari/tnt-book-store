@@ -6,6 +6,9 @@ import java.util.TimerTask;
 
 import ar.cpfw.tntbooks.model.TntCart;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CartsCleanUp extends TimerTask {
 
 	private Map<String, TntCart> listOfCreatedCart;

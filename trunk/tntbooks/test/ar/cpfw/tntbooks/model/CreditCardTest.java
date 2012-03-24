@@ -1,6 +1,5 @@
 package ar.cpfw.tntbooks.model;
 
-
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
@@ -8,6 +7,9 @@ import org.junit.Test;
 import ar.cpfw.tntbooks.model.CreditCard;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CreditCardTest {
 
 	@Test

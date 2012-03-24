@@ -9,6 +9,9 @@ import ar.cpfw.core.Cart;
 import ar.cpfw.core.Validatable;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class TntCart {
 
 	private static final int TIME_OUT = 30;

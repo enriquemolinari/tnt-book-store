@@ -6,6 +6,9 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 import ar.cpfw.tntbooks.model.CreditCardPaymentTerminal;
 
+/**
+ * @author Enrique Molinari
+ */
 public class TestCreditCardPaymentTerminalFactory {
 
 	public static CreditCardPaymentTerminal create() {

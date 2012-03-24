@@ -11,6 +11,11 @@ import org.hibernate.usertype.UserType;
 
 import ar.cpfw.tntbooks.model.Ticket;
 
+/**
+ * This is needed to map an Enum to a column
+ * 
+ * @author Enrique Molinari
+ */
 public class TicketUserType implements UserType {
 
 	@Override

@@ -10,6 +10,9 @@ import ar.cpfw.tntbooks.model.Ticket;
 
 import com.google.common.collect.ImmutableList;
 
+/**
+ * @author Enrique Molinari
+ */
 public class HibernateSalesNotebook extends HibernatePersistentObject<Ticket>
 		implements SalesNotebook {
 

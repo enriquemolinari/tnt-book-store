@@ -14,6 +14,9 @@ import ar.cpfw.tntbooks.model.TntCart;
 
 import com.google.common.collect.ImmutableList;
 
+/**
+ * @author Enrique Molinari
+ */
 public class HibernateCustomerAgenda extends
 		HibernatePersistentObject<Customer> implements CustomerAgenda {
 

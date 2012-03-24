@@ -2,6 +2,9 @@ package ar.cpfw.tntbooks.model;
 
 import java.util.List;
 
+/**
+ * @author Enrique Molinari
+ */
 public interface CustomerAgenda {
 
 	void newCustomer(Customer aClient);

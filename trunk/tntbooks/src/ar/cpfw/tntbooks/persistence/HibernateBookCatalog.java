@@ -8,6 +8,9 @@ import ar.cpfw.tntbooks.model.Book;
 import ar.cpfw.tntbooks.model.BookCatalog;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class HibernateBookCatalog extends HibernatePersistentObject<Book> implements
 		BookCatalog {
 

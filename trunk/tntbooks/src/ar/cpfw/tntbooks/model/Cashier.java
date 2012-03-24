@@ -3,6 +3,9 @@ package ar.cpfw.tntbooks.model;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 import ar.cpfw.tntbooks.model.exceptions.CreditCardProcessorTerminalException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class Cashier {
 
 	private MerchantProcessor merchantProcessor;

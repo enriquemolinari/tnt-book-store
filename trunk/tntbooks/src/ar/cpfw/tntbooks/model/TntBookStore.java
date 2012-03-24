@@ -3,7 +3,12 @@ package ar.cpfw.tntbooks.model;
 import ar.cpfw.core.Validatable;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
-// This class's primary purpose is to validate that a Book belongs to the Tnt Editorial
+/**
+ * To validate that a Book belongs to the Tnt
+ * Editorial
+ * 
+ * @author Enrique Molinari
+ */
 public class TntBookStore implements Validatable<Book> {
 
 	private static final String TNTEDITORIAL_ISBN_PREFIX = "AR123";

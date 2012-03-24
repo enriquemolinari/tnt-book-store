@@ -3,6 +3,9 @@ package ar.cpfw.tntbooks.model;
 import static org.apache.commons.lang.StringUtils.split;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class MerchantProcessor {
 
 	private CreditCardPaymentTerminal terminal;

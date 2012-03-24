@@ -1,10 +1,12 @@
 package ar.cpfw.tntbooks.model;
 
-
 import org.joda.time.DateTime;
 
 import ar.cpfw.tntbooks.model.TimeProvider;
 
+/**
+ * @author Enrique Molinari
+ */
 public class TestChangeableTimeProvider implements TimeProvider {
 
 	private DateTime currentTime;

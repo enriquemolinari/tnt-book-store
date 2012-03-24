@@ -14,6 +14,9 @@ import ar.cpfw.tntbooks.model.CreditCard;
 import ar.cpfw.tntbooks.model.CreditCardPaymentTerminal;
 import ar.cpfw.tntbooks.model.TimeProvider;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CreditCardPaymentTerminalTest {
 
 	@Test
