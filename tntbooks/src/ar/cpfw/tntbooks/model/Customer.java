@@ -2,11 +2,12 @@ package ar.cpfw.tntbooks.model;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import static org.apache.commons.lang.StringUtils.length;
-
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class Customer {
 
 	private String id;

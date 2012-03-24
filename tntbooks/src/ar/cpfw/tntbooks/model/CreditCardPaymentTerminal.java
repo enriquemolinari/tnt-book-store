@@ -6,6 +6,9 @@ import org.apache.commons.httpclient.methods.GetMethod;
 
 import ar.cpfw.tntbooks.model.exceptions.CreditCardProcessorTerminalException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CreditCardPaymentTerminal {
 
 	private static final int HTTP_BAD_REQUEST_CODE = 400;

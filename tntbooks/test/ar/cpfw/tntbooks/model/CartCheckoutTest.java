@@ -16,6 +16,9 @@ import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 import com.google.common.collect.ImmutableSet;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CartCheckoutTest {
 
 	private TimeProvider timeProvider = new TimeProvider() {

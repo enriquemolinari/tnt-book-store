@@ -14,8 +14,11 @@ import ar.cpfw.tntbooks.model.Customer;
 import ar.cpfw.tntbooks.model.TimeProvider;
 
 /**
- * This is to inject transient dependencies (non persisted colaborators) to
- * persistent objects
+ * This is to inject transient dependencies (non persistent colaborators) to
+ * persistent objects. When I retrieve persistent objects from the DB, this injects
+ * the transient colaborators and makes it transparently to the client code.
+ * 
+ * @author Enrique Molinari
  */
 @SuppressWarnings("serial")
 public class HibernateDIInterceptor extends EmptyInterceptor implements

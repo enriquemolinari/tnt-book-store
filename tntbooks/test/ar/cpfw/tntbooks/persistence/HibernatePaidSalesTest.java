@@ -33,6 +33,9 @@ import ar.cpfw.tntbooks.model.Ticket;
 import ar.cpfw.tntbooks.model.TimeProvider;
 import ar.cpfw.tntbooks.model.TntCart;
 
+/**
+ * @author Enrique Molinari
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "/test-beans.xml",
 		"/persistence-beans.xml", "/model-beans.xml" })

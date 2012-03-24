@@ -1,6 +1,5 @@
 package ar.cpfw.tntbooks.model;
 
-
 import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +8,9 @@ import ar.cpfw.tntbooks.model.Book;
 import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CartTimeoutTest {
 	
 	@Test

@@ -8,6 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 
+/**
+ * @author Enrique Molinari
+ */
 public abstract class HibernatePersistentObject<T> implements PersistentObject<T> {
 
 	private Class<T> persistentClass;

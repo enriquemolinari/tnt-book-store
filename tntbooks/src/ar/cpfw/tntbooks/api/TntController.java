@@ -22,6 +22,9 @@ import ar.cpfw.tntbooks.model.TntBookStore;
 import ar.cpfw.tntbooks.model.TntCart;
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 @Controller
 public class TntController {
 

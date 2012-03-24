@@ -3,6 +3,9 @@ package ar.cpfw.tntbooks.model;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+/**
+ * @author Enrique Molinari
+ */
 public class TicketItem {
 
 	private Book book;

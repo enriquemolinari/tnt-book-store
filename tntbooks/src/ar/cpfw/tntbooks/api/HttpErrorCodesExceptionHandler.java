@@ -12,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
+/**
+ * @author Enrique Molinari
+ */
 public class HttpErrorCodesExceptionHandler extends
 		DefaultHandlerExceptionResolver implements Ordered {
 

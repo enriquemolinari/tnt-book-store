@@ -10,6 +10,9 @@ import org.joda.time.format.DateTimeFormatter;
 
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
+/**
+ * @author Enrique Molinari
+ */
 public class CreditCard {
 
 	private static final int YEAR_FIXED_SIZE = 4;
