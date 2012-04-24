@@ -103,7 +103,7 @@ public class TntController {
 
 		listOfCreatedCarts.remove(cartId);
 
-		return new ModelAndView().addObject("transactionId", ticket.getId());
+		return new ModelAndView().addObject("transactionId", ticket.transactionId());
 	}
 
 	private TntCart getCart(String cartId) {
