@@ -30,8 +30,6 @@
 		
 		<dependency org="hsqldb" name="hsqldb" rev="1.8.0.10"/>
 
-		<dependency org="com.jayway.restassured" name="rest-assured" rev="1.5"/>
-
 		<dependency org="org.hibernate" name="hibernate-core" rev="3.6.7.Final">
 			<exclude org="antlr"/>
 			<exclude org="org.jboss.javaee"/>
@@ -70,8 +68,6 @@
 		<exclude org="org.testng"/>
 		<exclude org="org.springframework" module="spring-webmvc-portlet"/>
 		<exclude org="org.apache.openjpa"/>
-		
-<!--		<exclude org="org.hibernate" module="hibernate-commons-annotations"/>-->
 		<exclude org="org.hibernate" module="hibernate-annotations"/>
 	</dependencies>
 	

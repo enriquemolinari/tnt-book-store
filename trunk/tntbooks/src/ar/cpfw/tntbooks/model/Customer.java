@@ -103,7 +103,9 @@ public class Customer {
 		this.purchases = purchases;
 	}
 
-	public Customer() {
+	// just required by Hibernate
+	@SuppressWarnings("unused")
+	private Customer() {
 
 	}
 

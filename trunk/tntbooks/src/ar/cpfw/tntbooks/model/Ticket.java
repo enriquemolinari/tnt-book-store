@@ -40,8 +40,15 @@ public class Ticket {
 		}
 	}
 
+	
 	@JsonIgnore
-	public String getId() {
+	public String transactionId() {
+		return id;
+	}
+	
+	// just required by Hibernate
+	@SuppressWarnings("unused")
+	private String getId() {
 		return id;
 	}
 
