@@ -127,7 +127,7 @@ public class TntController {
 
 	@ExceptionHandler(Exception.class)
 	public ModelAndView handleException(Exception exception) {
-		return errorModel("Sorry... something bad has ocurred. Call customer service and wait........ still waiting at phone? ....... 2 hours later.... still waiting ? sorry... I feel very bad... ");
+		return errorModel("Sorry... something bad has ocurred.");
 	}
 
 	private ModelAndView errorModel(String message) {
