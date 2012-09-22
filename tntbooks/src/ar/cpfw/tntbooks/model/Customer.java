@@ -71,9 +71,7 @@ public class Customer {
 		return creditCard;
 	}
 
-	// just required by Hibernate
-	@SuppressWarnings("unused")
-	private String getId() {
+	public String getId() {
 		return id;
 	}
 

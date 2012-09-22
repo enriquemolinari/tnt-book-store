@@ -52,7 +52,7 @@ public class Ticket {
 		return id;
 	}
 
-	@JsonIgnore
+	@JsonProperty("salesDate")
 	public String getSalesDate() {
 		return this.dateTime.toString();
 	}
@@ -69,7 +69,7 @@ public class Ticket {
 		this.dateTime = new DateTime(date);
 	}
 
-	@JsonIgnore
+	@JsonProperty("totalAmount")
 	public float getAmount() {
 		return amount;
 	}
@@ -80,7 +80,7 @@ public class Ticket {
 		this.items = items;
 	}
 
-	@JsonIgnore
+	@JsonProperty("ticketItems")
 	public Set<TicketItem> getItems() {
 		return this.items;
 	}
@@ -113,7 +113,7 @@ public class Ticket {
 		return this.status;
 	}
 
-	@JsonProperty("ticket")
+	@JsonIgnore
 	@Override
 	public String toString() {
 		return "date: " + this.getSalesDate() + " total: " + this.getAmount() + "|"
