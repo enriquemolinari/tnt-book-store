@@ -1,5 +1,6 @@
 package ar.cpfw.tntbooks.api;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.UUID;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.cpfw.tntbooks.model.BookCatalog;
+import ar.cpfw.tntbooks.model.Customer;
 import ar.cpfw.tntbooks.model.CustomerAgenda;
 import ar.cpfw.tntbooks.model.Ticket;
 import ar.cpfw.tntbooks.model.TimeProvider;
@@ -47,7 +49,20 @@ public class TntController {
 				listOfCreatedCarts), 10, 3600000);
 	}
 
-	@RequestMapping(value = "/cart", method = RequestMethod.POST)
+	@RequestMapping(value = "/customer/{customerName}", method = RequestMethod.GET)
+	public ModelAndView validateCustomer(
+			@PathVariable("customerName") String customerName) {
+		// it is necesary to perform some validation on the customerName param
+		// before send it to the agendaOfCustomer services.
+		List<Customer> customers = agendaOfCustomers.customersByName(customerName);
+		if (customers.size() < 1) {
+			throw new IllegalArgumentException("There is no customer with name: " + customerName);
+		}
+		return new ModelAndView().addObject("customerId", customers.get(0).getId());
+	}
+
+	@RequestMapping(value = "/cart", method = { RequestMethod.GET,
+			RequestMethod.POST })
 	public ModelAndView createCart(@RequestParam("clientId") String clientId) {
 
 		if (agendaOfCustomers.exists(clientId)) {
@@ -103,7 +118,8 @@ public class TntController {
 
 		listOfCreatedCarts.remove(cartId);
 
-		return new ModelAndView().addObject("transactionId", ticket.transactionId());
+		return new ModelAndView().addObject("transactionId", ticket
+				.transactionId());
 	}
 
 	private TntCart getCart(String cartId) {

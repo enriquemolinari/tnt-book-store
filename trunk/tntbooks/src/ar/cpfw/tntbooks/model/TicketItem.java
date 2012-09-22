@@ -56,7 +56,7 @@ public class TicketItem {
 		return book;
 	}
 
-	@JsonIgnore
+	@JsonProperty("isbn")
 	public String getIsbn() {
 		return book.getIsbn();
 	}
@@ -67,7 +67,7 @@ public class TicketItem {
 		this.book = book;
 	}
 
-	@JsonIgnore
+	@JsonProperty("price")
 	public Float getPrice() {
 		return price;
 	}
@@ -78,7 +78,7 @@ public class TicketItem {
 		this.price = price;
 	}
 
-	@JsonIgnore
+	@JsonProperty("quantity")
 	public Integer getQuantity() {
 		return quantity;
 	}
@@ -94,6 +94,7 @@ public class TicketItem {
 		return book.getTitle();
 	}
 
+	@JsonIgnore
 	@Override
 	public String toString() {
 		return this.getIsbn() + "|" + this.getPrice() + "|"
