@@ -23,6 +23,18 @@ public class Cart<T> {
 		return items.containsKey(item);
 	}
 
+	public void remove(T item) {
+		if (contains(item)) {
+			if (quantityFor(item) == 1) {
+				items.remove(item);
+			} else {
+				items.put(item, quantityFor(item) - 1);
+			}
+		} else {
+			items.remove(item);
+		}
+	}
+	
 	public void add(T item, int quantity) {
 
 		checkValidItem(item);

@@ -1,6 +1,10 @@
 package ar.cpfw.tntbooks.model;
 
 import static org.apache.commons.lang.StringUtils.length;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import ar.cpfw.tntbooks.model.exceptions.BusinessException;
 
 /**
@@ -45,6 +49,7 @@ public class Book {
 		}		
 	}
 	
+	@JsonProperty("title")
 	public String getTitle() {
 		return title;
 	}
@@ -79,10 +84,12 @@ public class Book {
 		return id;
 	}
 	
+	@JsonProperty("isbn")
 	public String getIsbn() {
 		return isbn;
 	}
 	
+	@JsonProperty("price")
 	public Float getPrice() {
 		return price;
 	}
@@ -101,6 +108,7 @@ public class Book {
 	}
 
 	@Override
+	@JsonIgnore
 	public String toString() {
 		return this.isbn; 
 	}

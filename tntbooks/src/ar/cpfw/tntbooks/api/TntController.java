@@ -1,5 +1,6 @@
 package ar.cpfw.tntbooks.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.cpfw.tntbooks.model.Book;
 import ar.cpfw.tntbooks.model.BookCatalog;
 import ar.cpfw.tntbooks.model.Customer;
 import ar.cpfw.tntbooks.model.CustomerAgenda;
@@ -54,15 +56,23 @@ public class TntController {
 			@PathVariable("customerName") String customerName) {
 		// it is necesary to perform some validation on the customerName param
 		// before send it to the agendaOfCustomer services.
-		List<Customer> customers = agendaOfCustomers.customersByName(customerName);
+		List<Customer> customers = agendaOfCustomers
+				.customersByName(customerName);
 		if (customers.size() < 1) {
-			throw new IllegalArgumentException("There is no customer with name: " + customerName);
+			throw new IllegalArgumentException(
+					"There is no customer with name: " + customerName);
 		}
-		return new ModelAndView().addObject("customerId", customers.get(0).getId());
+		return new ModelAndView().addObject("customerId", customers.get(0)
+				.getId());
 	}
 
-	@RequestMapping(value = "/cart", method = { RequestMethod.GET,
-			RequestMethod.POST })
+	@RequestMapping(value = "/books", method = RequestMethod.GET)
+	public ModelAndView listBooks() {
+		return new ModelAndView().addObject("catalog", this.catalogOfBooks
+				.allBooks());
+	}
+
+	@RequestMapping(value = "/cart", method = RequestMethod.GET)
 	public ModelAndView createCart(@RequestParam("clientId") String clientId) {
 
 		if (agendaOfCustomers.exists(clientId)) {
@@ -85,7 +95,36 @@ public class TntController {
 
 		TntCart cart = getCart(cartId);
 
-		return new ModelAndView().addObject("cartContent", cart.getBooks());
+		Map<Book, Integer> cartContent = cart.getBooks();
+		List<BookAndQuantity> content = new ArrayList<BookAndQuantity>();
+		for (Book book : cartContent.keySet()) {
+			content.add(new BookAndQuantity(book, cartContent.get(book)));
+		}
+		return new ModelAndView().addObject("cartContent", content);
+	}
+
+	// I have to add this to make the JsonMapper happy, as it does not support
+	// to have business objects as key in Maps.
+	private static class BookAndQuantity {
+		private Book book;
+		private Integer quantity;
+
+		private BookAndQuantity(Book book, Integer quantity) {
+			this.book = book;
+			this.quantity = quantity;
+		}
+
+		@SuppressWarnings("unused")
+		//used by JsonMapper
+		public Book getBook() {
+			return book;
+		}
+		
+		@SuppressWarnings("unused")
+		//used by JsonMapper		
+		public Integer getQuantity() {
+			return quantity;
+		}
 	}
 
 	@RequestMapping(value = "/cart/{cartId}", method = RequestMethod.POST)
@@ -100,6 +139,17 @@ public class TntController {
 		return new ModelAndView().addObject("cartContent", cart.getBooks());
 	}
 
+	@RequestMapping(value = "/cart/{cartId}", method = RequestMethod.DELETE)
+	public ModelAndView removeFromCart(@PathVariable("cartId") String cartId,
+			@RequestParam("isbn") String isbn) {
+
+		TntCart cart = getCart(cartId);
+
+		cart.remove(catalogOfBooks.bookByIsbn(isbn));
+
+		return new ModelAndView().addObject("cartContent", cart.getBooks());
+	}
+	
 	@RequestMapping(value = "/purchases", method = RequestMethod.GET)
 	public ModelAndView listPurchases(
 			@RequestParam("clientId") String customerId) {

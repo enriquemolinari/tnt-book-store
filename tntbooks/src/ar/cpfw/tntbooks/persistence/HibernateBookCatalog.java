@@ -1,5 +1,7 @@
 package ar.cpfw.tntbooks.persistence;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,4 +35,11 @@ public class HibernateBookCatalog extends HibernatePersistentObject<Book> implem
 		getSession().saveOrUpdate(aBook);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(readOnly = true)
+	public List<Book> allBooks() {
+		Criteria criteria = getSession().createCriteria(Book.class);
+		return criteria.list();
+	}
 }
