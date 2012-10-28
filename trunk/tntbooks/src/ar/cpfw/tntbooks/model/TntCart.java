@@ -78,4 +78,8 @@ public class TntCart {
 	public void setValidator(Validatable<Book> validatable) {
 		this.cart.setValidator(validatable);
 	}
+
+	public void remove(Book book) {
+		this.cart.remove(book);
+	}
 }
