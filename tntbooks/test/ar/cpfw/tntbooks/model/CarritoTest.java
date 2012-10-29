@@ -107,4 +107,50 @@ public class CarritoTest {
 
 		Assert.assertEquals(2, cart.size());
 	}
+	
+	@Test
+	public void when_adding_two_book_and_removing_one_then_I_have_one_book() {
+		Book book1 = new Book(ISBN_TNTBOOKS1, 100f, "book title");
+	
+		TntCart cart = new TntCart(timeProvider);
+
+		cart.add(book1);
+		cart.add(book1);
+		
+		cart.remove(book1);
+		Assert.assertEquals(1, cart.size());
+		Assert.assertTrue(cart.getBooks().get(book1).equals(1));
+	}
+
+	@Test
+	public void when_adding_two_different_books_and_removing_one_then_I_have_one_book() {
+		Book book1 = new Book(ISBN_TNTBOOKS1, 100f, "book title");
+		Book book2 = new Book(ISBN_TNTBOOKS2, 100f, "book title");
+	
+		TntCart cart = new TntCart(timeProvider);
+
+		cart.add(book1);
+		cart.add(book2);
+		
+		cart.remove(book1);
+		Assert.assertEquals(1, cart.size());
+		Assert.assertTrue(cart.getBooks().get(book2).equals(1));
+	}
+
+	@Test
+	public void when_removing_a_book_more_than_the_quantity_then_I_remove_the_book() {
+		Book book1 = new Book(ISBN_TNTBOOKS1, 100f, "book title");
+		Book book2 = new Book(ISBN_TNTBOOKS2, 100f, "book title");
+	
+		TntCart cart = new TntCart(timeProvider);
+
+		cart.add(book1);
+		cart.add(book1);
+		cart.add(book2);
+		
+		cart.remove(book1);
+		cart.remove(book1);	
+		Assert.assertNull(cart.getBooks().get(book1));
+	}
+	
 }
