@@ -1,0 +1,18 @@
+<div>
+	<br/>
+    <form class="form-horizontal">
+    	<span>User name:</span>
+        <input type="text" ng-model="customerName" class="input-medium"/>
+        <button type="button" ng-click="validate(customerName)" class="btn-info">authenticate</button>
+    </form>
+    
+    <div ng-show="spinner"><img src="img/spinner.gif" />Performing authentication ... </div>
+ 
+    <div ng-show="error" class="error">{{error}}</div>
+</div>
+
+<hr/>
+
+<div>
+ <h2>Here you might see some nice marketing stuff ... </h2>
+</div>
