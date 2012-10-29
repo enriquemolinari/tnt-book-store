@@ -95,16 +95,19 @@ public class TntController {
 
 		TntCart cart = getCart(cartId);
 
-		Map<Book, Integer> cartContent = cart.getBooks();
-		List<BookAndQuantity> content = new ArrayList<BookAndQuantity>();
-		for (Book book : cartContent.keySet()) {
-			content.add(new BookAndQuantity(book, cartContent.get(book)));
-		}
-		return new ModelAndView().addObject("cartContent", content);
+		return new ModelAndView().addObject("cartContent", buildCartContent(cart.getBooks()));
 	}
 
 	// I have to add this to make the JsonMapper happy, as it does not support
 	// to have business objects as key in Maps.
+	private List<BookAndQuantity> buildCartContent(Map<Book, Integer> cartContent) {
+		List<BookAndQuantity> content = new ArrayList<BookAndQuantity>();
+		for (Book book : cartContent.keySet()) {
+			content.add(new BookAndQuantity(book, cartContent.get(book)));
+		}
+		return content;
+	}
+	
 	private static class BookAndQuantity {
 		private Book book;
 		private Integer quantity;
@@ -136,7 +139,7 @@ public class TntController {
 
 		cart.add(catalogOfBooks.bookByIsbn(isbn), quantity);
 
-		return new ModelAndView().addObject("cartContent", cart.getBooks());
+		return new ModelAndView().addObject("cartContent", buildCartContent(cart.getBooks()));
 	}
 
 	@RequestMapping(value = "/cart/{cartId}", method = RequestMethod.DELETE)
@@ -147,7 +150,7 @@ public class TntController {
 
 		cart.remove(catalogOfBooks.bookByIsbn(isbn));
 
-		return new ModelAndView().addObject("cartContent", cart.getBooks());
+		return new ModelAndView().addObject("cartContent", buildCartContent(cart.getBooks()));
 	}
 	
 	@RequestMapping(value = "/purchases", method = RequestMethod.GET)
