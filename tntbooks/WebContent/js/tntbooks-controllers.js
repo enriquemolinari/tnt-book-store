@@ -1,6 +1,3 @@
-//TODO: 
-//commentar todo
-//clean up? msgService?
 angular.module('tnt', ['tntBooks']).config(['$routeProvider', function($routeProvider) {
 			$routeProvider
 			.when('/login', {templateUrl : 'login.html', controller : TntLoginCtrl})
