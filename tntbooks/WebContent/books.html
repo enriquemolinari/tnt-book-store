@@ -1,0 +1,45 @@
+<ng-include src="'menu.html'"></ng-include>
+
+<div ng-show="spinner"><img src="img/spinner.gif" />Retrieving books ... </div>
+
+<div class="span-24" id="menuh">
+	<ul>
+    	<li ng-show="!cartId"><a ng-click="createCart()">create a cart</a></li>
+    </ul>
+</div>
+
+<div class="span-24 error" ng-show="error">{{error}}</div>
+
+<div class="span-18" ng-show="books">
+	<table width="950px" border="1">
+		<thead>
+			<th ng-show="cartId">Actions</th>
+			<th>Book title</th>
+			<th>Details</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="book in books.catalog">
+			<td ng-show="cartId">[ <a ng-click="addToCart(book.isbn)">add</a> ] [ <a ng-click="removeFromCart(book.isbn)">del</a> ]</td>
+			<td>{{book.title}}</td>
+			<td>
+				<b>Isbn:</b>  {{book.isbn}}<br/>
+				<b>Price:</b> USD$ {{book.price}}<br/>
+			</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="span-6 last">
+	<table class="table-box">
+		<thead>
+			<th>Cart Content</th>
+		</thead>
+		<tr ng-repeat="entry in cartContent">
+			<td>
+				{{entry.book.title}}:{{entry.quantity}}
+			</td>
+		</tr>
+	</table>
+	<span><b>Total</b>: USD$ {{total}}.</span> <span ng-show="total > 0">[ <a ng-click="checkout()">Checkout</a> ]</span>
+</div>

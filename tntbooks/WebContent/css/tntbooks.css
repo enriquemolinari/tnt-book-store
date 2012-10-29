@@ -1,0 +1,46 @@
+.container {
+	width:950px;
+	margin:0 auto;
+	margin-top:30px;
+}
+.box {
+	padding:1.5em;
+	margin-bottom:1.5em;
+	background:#F2F2F2;
+	width:950px;
+	margin:30px auto;
+}
+.table-box {
+	border:1px solid;
+}
+
+#menuh {
+        margin-top: 10px;
+}
+
+#menuh ul, li {
+        list-style-type: none;
+}
+
+#menuh ul {
+        margin: 0;
+        padding: 0;
+}
+
+#menuh li {
+        float: left;
+}
+
+#menuh a {
+        text-decoration: none;
+        color: #3366CC;
+        display: block;
+        padding: 3px 10px;
+        text-align: center;
+        border: 1px solid #F8F8F8;
+        border-width: 0px 0px 1px 0;
+}
+
+#menuh a:hover {
+        background-color: #F8F8F8;
+}

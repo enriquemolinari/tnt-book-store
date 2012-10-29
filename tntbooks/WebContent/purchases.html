@@ -1,0 +1,27 @@
+<ng-include src="'menu.html'"></ng-include>
+
+<div ng-show="spinner"><img src="img/spinner.gif" />getting purchases ... </div>
+
+<div class="span-24" ng-show="purchases">
+	<table width="950px" border="1">
+		<thead>
+			<th>Order date & total</th>
+			<th>Details</th>
+		</thead>
+		<tr ng-repeat="purchase in purchases.purchases">
+		<td><b>Date:</b> {{purchase.salesDate | date:'dd/MM/yyyy HH:mm:ss'}}. <b>total:</b> USD$ {{purchase.totalAmount}}</td>
+		<td>
+		    <table border="3">
+			    <tr ng-repeat="item in purchase.ticketItems">
+			    	<td>
+				    	<b>Title:</b> {{item.title}}<br/>
+				    	<b>Isbn:</b>  {{item.isbn}}<br/>
+				    	<b>Price:</b> USD$ {{item.price}}<br/>
+				    	<b>Quantity:</b> {{item.quantity}}
+			    	</td>
+			    </tr>
+		    </table>
+		</td>
+		</tr>
+	</table>
+</div>
