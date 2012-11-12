@@ -89,6 +89,13 @@ public class Book {
 		return isbn;
 	}
 	
+	public Float priceForQuantity(int quantity) {
+		if (quantity < 1) {
+			throw new BusinessException("The quantity must be greater than 0... ");
+		}
+		return price * quantity;
+	}
+	
 	@JsonProperty("price")
 	public Float getPrice() {
 		return price;
