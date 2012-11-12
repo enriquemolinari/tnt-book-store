@@ -1,7 +1,6 @@
 package ar.cpfw.tntbooks.model;
 
 import java.util.Map;
-import java.util.Set;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
@@ -18,7 +17,7 @@ public class TntCart {
 	private TimeProvider timeProvider;
 	private long lastTimeUsed;
 	private Cart<Book> cart = new Cart<Book>();
-	
+
 	public TntCart(TimeProvider timeProvider) {
 		this.timeProvider = timeProvider;
 		keepAlive();
@@ -30,13 +29,13 @@ public class TntCart {
 
 	public void add(Book aBook, int quantity) {
 		checkTimeOut();
-		this.cart.add(aBook, quantity);	
+		this.cart.add(aBook, quantity);
 	}
 
 	boolean contains(Book aBook) {
 		return this.cart.contains(aBook);
 	}
-	 
+
 	private void checkTimeOut() {
 		if (isTimeout()) {
 			throw new BusinessException("timeout...");
@@ -47,10 +46,10 @@ public class TntCart {
 	private void keepAlive() {
 		this.lastTimeUsed = timeProvider.nowAsMillisecs();
 	}
-	
+
 	public boolean isTimeout() {
 		float elapsedTime = ((timeProvider.nowAsMillisecs() - lastTimeUsed) / 1000f) / 60f;
-		return elapsedTime >= TIME_OUT; 
+		return elapsedTime >= TIME_OUT;
 	}
 
 	int quantityFor(Book aBook) {
@@ -59,22 +58,25 @@ public class TntCart {
 
 	int size() {
 		checkTimeOut();
-		
+
 		return this.cart.size();
 	}
 
-	public Set<Book> allBooks() {
-		checkTimeOut();
-		
-		return this.cart.allItems();
+	public float calculateTotal() {
+		float total = 0f;
+
+		for (Book aBook : cart.allItems()) {
+			total += aBook.priceForQuantity(quantityFor(aBook));
+		}
+		return total;
 	}
-	
+
 	@JsonProperty(value = "books")
 	public Map<Book, Integer> getBooks() {
 		keepAlive();
 		return this.cart.itemsAndQuantity();
 	}
-	
+
 	public void setValidator(Validatable<Book> validatable) {
 		this.cart.setValidator(validatable);
 	}

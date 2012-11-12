@@ -25,12 +25,7 @@ public class Cashier {
 			throw new BusinessException("Your credit cart has expired... ");
 		}
 
-		float total = 0f;
-
-		for (Book aBook : aCart.allBooks()) {
-			int quantity = aCart.quantityFor(aBook);
-			total += aBook.getPrice() * quantity;
-		}
+		float total = aCart.calculateTotal();
 
 		Ticket ticket = null;
 		
