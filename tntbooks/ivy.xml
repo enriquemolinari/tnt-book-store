@@ -37,6 +37,7 @@
 		<dependency org="org.hibernate" name="hibernate-validator" rev="4.2.0.Final"/>
 		
 		<dependency org="org.apache.derby" name="derby" rev="10.2.2.0"/>
+		<dependency org="org.apache.derby" name="derbyclient" rev="10.9.1.0"/>
 		
 		<dependency org="com.google.guava" name="guava" rev="r09">
 			<exclude org="com.google.code.findbugs"/>

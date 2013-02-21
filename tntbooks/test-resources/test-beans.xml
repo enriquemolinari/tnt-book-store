@@ -33,10 +33,10 @@
 
 		<property name="mappingLocations">
 			<list>
-				<value>classpath:*.hbm.xml</value>
+				<value>classpath*:**/*.hbm.xml</value>
 			</list>
 		</property>
-		
+
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
