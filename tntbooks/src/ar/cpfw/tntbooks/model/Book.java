@@ -32,7 +32,7 @@ public class Book {
 	}
 
 	private void checkPrice(Float price) {
-		if (price  == null) {
+		if (price == null) {
 			throw new BusinessException("The price must not be null");
 		}
 	}
@@ -47,6 +47,10 @@ public class Book {
 		if (length(string) == 0 || length(string) > 60) {
 			throw new BusinessException("The " + string + "must have less than 60 characters");
 		}		
+	}
+	
+	public boolean isbnStartWithPrefix(String prefix) {
+		return isbn.startsWith(prefix);
 	}
 	
 	@JsonProperty("title")
