@@ -1,7 +1,7 @@
 var tntBooks = angular.module('tntBooks', ['ngResource']);
 
 var host = 'localhost';
-var action = '/tnt/webapi';
+var action = '/tntbooks/webapi';
 var uri = 'http://' + host + ':port' + action;
 var urls = {
     validateCustomer:	uri + '/customer/:customerName.json',
