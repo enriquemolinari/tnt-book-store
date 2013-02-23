@@ -13,7 +13,7 @@ import ar.cpfw.tntbooks.model.Customer;
 import ar.cpfw.tntbooks.model.CustomerAgenda;
 import ar.cpfw.tntbooks.model.TimeProviderImpl;
 
-public class PopulateWithSampleData  implements ServletContextListener {
+public class PopulateWithSampleDataListener  implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {

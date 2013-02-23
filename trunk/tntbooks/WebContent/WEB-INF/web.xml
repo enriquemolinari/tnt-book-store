@@ -19,7 +19,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>ar.cpfw.dbpopulator.PopulateWithSampleData</listener-class>
+		<listener-class>ar.cpfw.dbpopulator.PopulateWithSampleDataListener</listener-class>
 	</listener>
 	
 	<servlet>
