@@ -26,8 +26,8 @@
 
 	<!-- for development -->
 	<beans profile="dev">
-		<bean id="creditCardPaymentTerminal" class="ar.cpfw.tntbooks.model.TestCreditCardPaymentTerminalFactory"
-			factory-method="create" />
+		<bean id="creditCardPaymentTerminal" class="ar.cpfw.tntbooks.model.CreditCardPaymentTerminal"
+			factory-method="alwaysSuccessPaymentTerminal" />
 	</beans>
 
 	<beans profile="prod">
