@@ -28,8 +28,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-                <!-- MVC config is application specific -->
-            	WEB-INF/mvc/mvc-beans.xml
+            	classpath*:mvc-beans.xml
             </param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
