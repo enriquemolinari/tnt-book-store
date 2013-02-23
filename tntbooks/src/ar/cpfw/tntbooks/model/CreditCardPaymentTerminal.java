@@ -1,6 +1,7 @@
 package ar.cpfw.tntbooks.model;
 
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
 
@@ -11,7 +12,7 @@ import ar.cpfw.tntbooks.model.exceptions.CreditCardProcessorTerminalException;
  */
 public class CreditCardPaymentTerminal {
 
-	private static final int HTTP_BAD_REQUEST_CODE = 400;
+	private static final int HTTP_SUCCESS_REQUEST_CODE = 200;
 	private HttpClient httpClient;
 	private GetMethod getMethod;
 
@@ -29,7 +30,7 @@ public class CreditCardPaymentTerminal {
 
 			int httpCode = httpClient.executeMethod(this.getMethod);
 
-			if (httpCode == HTTP_BAD_REQUEST_CODE) {
+			if (httpCode != HTTP_SUCCESS_REQUEST_CODE) {
 				throw new CreditCardProcessorTerminalException("Bad request ...");
 			}
 			return getMethod.getResponseBodyAsString();
@@ -51,5 +52,23 @@ public class CreditCardPaymentTerminal {
 		params[3] = new NameValuePair("transactionAmount", String.valueOf(amount));
 	
 		return params;
+	}
+	
+	protected static CreditCardPaymentTerminal alwaysSuccessPaymentTerminal() {
+			HttpClient httpClient = new HttpClient() {
+				@Override
+				public int executeMethod(HttpMethod method) {
+					return 200;
+				}
+			};
+
+			GetMethod method = new GetMethod() {
+				@Override
+				public String getResponseBodyAsString() {
+					return "0|OK";
+				}
+			};
+			
+			return new CreditCardPaymentTerminal(httpClient, method);
 	}
 }
