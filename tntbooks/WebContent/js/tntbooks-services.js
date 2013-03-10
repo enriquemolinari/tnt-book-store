@@ -1,17 +1,19 @@
 var tntBooks = angular.module('tntBooks', ['ngResource']);
 
-var host = 'localhost';
-var action = '/tntbooks/webapi';
+var host = location.hostname;
+var paths = location.pathname.split("/");
+var action = "/" + paths[1] + '/webapi';
 var uri = 'http://' + host + ':port' + action;
+
 var urls = {
     validateCustomer:	uri + '/customer/:customerName.json',
     listPurchases:		uri + '/purchases.json',
-    listBooks:				uri + '/books.json',   
+    listBooks:			uri + '/books.json',   
     createCart:			uri + '/cart.json',
-    addToCart:				uri + '/cart/:cartId.json',
+    addToCart:			uri + '/cart/:cartId.json',
     removeFromCart:		uri + '/cart/:cartId.json',
-    listCart:				uri + '/cart/:cartId.json',
-    checkout:				uri + '/cart/:cartId/checkout'
+    listCart:			uri + '/cart/:cartId.json',
+    checkout:			uri + '/cart/:cartId/checkout'
 };
 
 /*
