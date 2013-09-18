@@ -14,9 +14,4 @@ public interface CustomerAgenda {
 	Customer customerById(String customerId);
 
 	boolean exists(String customerId);
-
-	List<Ticket> purchases(String customerId);
-	
-	Ticket purchase(String customerId, TntCart cart);
-
 }

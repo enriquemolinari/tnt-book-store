@@ -51,7 +51,6 @@ public class TicketItem {
 
 	@JsonIgnore
 	// just required by Hibernate
-	@SuppressWarnings("unused")
 	private Book getBook() {
 		return book;
 	}
