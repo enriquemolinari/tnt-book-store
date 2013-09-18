@@ -1,15 +1,12 @@
 package ar.cpfw.tntbooks.persistence;
 
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.cpfw.tntbooks.model.Customer;
 import ar.cpfw.tntbooks.model.CustomerAgenda;
-import ar.cpfw.tntbooks.model.Ticket;
-import ar.cpfw.tntbooks.model.TicketItem;
 
 import com.google.common.collect.ImmutableList;
 
