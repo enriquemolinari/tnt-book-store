@@ -147,7 +147,7 @@ public class HibernatePaidSalesTest implements ApplicationContextAware {
 	}
 
 	@Test
-	public void the_customer_exists_the_it_is_persisted() {
+	public void the_customer_exists_then_it_is_persisted() {
 		List<Customer> l = customerAgenda.customersByName("Estelita");
 		Customer customer = l.get(0);
 		
