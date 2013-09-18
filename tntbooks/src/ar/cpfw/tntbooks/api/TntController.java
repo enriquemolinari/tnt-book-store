@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.cpfw.tntbooks.application.ApplicationFacade;
+import ar.cpfw.tntbooks.application.IApplicationFacade;
 import ar.cpfw.tntbooks.model.Book;
 import ar.cpfw.tntbooks.model.BookCatalog;
 import ar.cpfw.tntbooks.model.Customer;
@@ -34,6 +36,7 @@ public class TntController {
 
 	private Map<String, TntCart> listOfCreatedCarts = new ConcurrentHashMap<String, TntCart>();
 	private CustomerAgenda agendaOfCustomers;
+	private IApplicationFacade appFacade;
 	private BookCatalog catalogOfBooks;
 	private TntBookStore tntBookStore;
 	private TimeProvider timeProvider;
@@ -41,11 +44,12 @@ public class TntController {
 	@Autowired
 	public TntController(CustomerAgenda agendaOfCustomer,
 			BookCatalog catalogOfBook, TntBookStore bookStore,
-			TimeProvider timeProvider) {
+			TimeProvider timeProvider, IApplicationFacade appFacade) {
 		this.agendaOfCustomers = agendaOfCustomer;
 		this.catalogOfBooks = catalogOfBook;
 		this.tntBookStore = bookStore;
 		this.timeProvider = timeProvider;
+		this.appFacade = appFacade; 
 
 		new Timer("carts_clean_up").schedule(new CartsCleanUp(
 				listOfCreatedCarts), 10, 3600000);
@@ -55,7 +59,7 @@ public class TntController {
 	public ModelAndView validateCustomer(
 			@PathVariable("customerName") String customerName) {
 		// it is necesary to perform some validation on the customerName param
-		// before send it to the agendaOfCustomer services.
+		// before send it to the agendaOfCustomer.
 		List<Customer> customers = agendaOfCustomers
 				.customersByName(customerName);
 		if (customers.size() < 1) {
@@ -157,7 +161,7 @@ public class TntController {
 	public ModelAndView listPurchases(
 			@RequestParam("clientId") String customerId) {
 
-		return new ModelAndView().addObject("purchases", agendaOfCustomers
+		return new ModelAndView().addObject("purchases", appFacade
 				.purchases(customerId));
 	}
 
@@ -167,7 +171,7 @@ public class TntController {
 
 		TntCart cart = getCart(cartId);
 
-		Ticket ticket = agendaOfCustomers.purchase(clientId, cart);
+		Ticket ticket = appFacade.purchase(clientId, cart);
 
 		listOfCreatedCarts.remove(cartId);
 

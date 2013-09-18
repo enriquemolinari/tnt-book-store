@@ -49,6 +49,10 @@
 
 	</bean>
 
+	<bean id="applicationFacade" class="ar.cpfw.tntbooks.application.ApplicationFacade">
+		<constructor-arg ref="customerAgenda"/>		
+	</bean>
+
 	<import resource="persistence-beans.xml" />
 	<import resource="model-beans.xml" />
 
